@@ -19,14 +19,6 @@ Este projeto consiste em um alarme funcional que toca uma música ou som pré-de
 
 ---
 
-## 🚀 Como usar
-
-1. Abra o [link do alarme](https://telmopersch123.github.io/alarme-Simples/) em seu navegador.
-2. O alarme começará a tocar automaticamente com a música padrão, mas você pode modificar a música de fundo com sua própria URL.
-3. O alarme continuará a tocar, mesmo que você minimize ou altere a guia do navegador.
-
----
-
 ## 📂 Estrutura do Projeto
 
 O código é simples e direto, utilizando HTML, CSS e JavaScript:
