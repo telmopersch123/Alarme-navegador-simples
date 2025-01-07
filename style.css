@@ -15,7 +15,9 @@ text-align: center;
 gap: 30px;
 width: 90%;
 }
-
+button {
+   pointer-events: auto; 
+}
 #buttonAlarm {
   background-color: #0078D7; /* Azul primário */
   color: white; /* Texto branco */
