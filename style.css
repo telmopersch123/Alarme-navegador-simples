@@ -19,6 +19,7 @@ button {
    pointer-events: auto; 
 }
 #buttonAlarm {
+
   background-color: #0078D7; /* Azul primário */
   color: white; /* Texto branco */
   font-size: 18px; /* Tamanho da fonte */
@@ -31,6 +32,7 @@ button {
   transition: all 0.3s ease; /* Transição suave */
   width: 50%;
   margin: auto;
+  margin-top: 50px;
 }
 
 #buttonAlarm:hover {
@@ -47,6 +49,7 @@ button {
 #TitleAlarm{
   color: rgba(255, 255, 255, 0.411);
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin-bottom: 50px;
 }
 #alarm {
   display: flex;
@@ -59,8 +62,8 @@ button {
 
 
 #alarm input {
-  width: 250px;
-  height: 50px;
+  width: 300px;
+  height: 80px;
   font-size: 20px;
   text-align: center;
   font-weight: bolder;
@@ -76,17 +79,21 @@ button {
 #alarm input:focus {
   border-color: #0078D7;
   box-shadow: 0 0 10px rgba(0, 120, 215, 0.5);
-  background-color: #ffffff;
+  background-color: #f8f8f87c;
 }
 
 #alarm input::placeholder {
   color: #888;
   font-style: italic;
 }
+#alarm input:focus::placeholder {
+  color: #00000081;
+}
+
 
 #alarm input:hover {
   border-color: #555;
-  background-color: #eaeaea;
+  background-color: #f8f8f844;
 }
 #clockDiv{
   font-size: 10vw;
@@ -391,6 +398,33 @@ color: rgba(255, 255, 255, 0.616);
 display: flex;
 position: relative;
 }
+.ZerarDiv{
+position: absolute;
+margin-left: 2px;
+font-size: 40px;
+background-color: rgba(255, 255, 255, 0.445);
+height: 92%;
+border-radius: 10px 0px 0px 10px;
+display: flex;
+align-items: center;
+  top: 50%; /* Move o elemento para o meio do contêiner */
+  transform: translateY(-50%); /* Ajusta para centralizar exatamente o elemento */
+
+}
+.bi-file-x{
+  background-color: #888;
+  padding: 3px;
+  margin: 2px;
+  border-radius: 10px;
+    cursor: pointer;
+}
+.bi-file-x:hover{
+  background-color: rgb(122, 122, 122);
+}
+.bi-file-x:active{
+  color: #0078D7;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.712);
+}
 .divIcons{
 position:absolute;
 right: 0;
@@ -400,32 +434,36 @@ align-items: center;
 justify-content: center;
 border-radius: 0px 8px 8px 0px;
 background-color: rgba(255, 255, 255, 0.445);
-height: 91%;
+height: 92%;
 margin-right: 2px;
+cursor: pointer;
+
 
   top: 50%; /* Move o elemento para o meio do contêiner */
   transform: translateY(-50%); /* Ajusta para centralizar exatamente o elemento */
 
 }
 .arrow{
-font-size: 20px;
-width: 30px;
+font-size: 25px;
+width: 60px;
+
 }
 .arrow:hover{
-
   background-color: transparent !important;
   color: #0078D7;
-  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.541);
+   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.712);
 }
 .bi-caret-up-fill:active{
  background-color: rgba(0, 0, 0, 0.356) !important;
+ border-radius: 0px 8px 0px 0px;
   height: 100%;
-  border-radius: 0px 8px 0px 0px;
+  margin-bottom: 20px;
 }
 .bi-caret-down-fill:active{
   background-color: rgba(0, 0, 0, 0.356) !important;
-  height: 100%;
   border-radius: 0px 0px 8px 0px;
+  height: 100%;
+  margin-top: 20px;
 }
 .div_Inputs input:hover ~ .divIcons .arrow {
   color: #555; /* Escolha a cor desejada */

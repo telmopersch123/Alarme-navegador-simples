@@ -36,7 +36,10 @@ class Hours {
 }
 let currentTime = new Hours(-1, -1, -1);
 
-
+//identificar se é um dispositivo móvel ou tablet
+function isMobileOrTablet() {
+  return /Mobi|Tablet|iPad|iPhone/i.test(navigator.userAgent);
+}
 
 // serviço de notificação - Service Worker
 if ('serviceWorker' in navigator) {
@@ -90,35 +93,35 @@ function configurarAlarme(userMusic) {
                 registration.showNotification('Alarme', {
                     body: 'Seu alarme está tocando!',
                     icon: 'icon.png',
-                    requireInteraction: true, // Garante que a notificação permaneça até ser fechada pelo usuário
+                    requireInteraction: true, 
                     actions: [
                         {
-                            action: 'close', // Ação de fechar a notificação
+                            action: 'close', 
                             title: 'Remover Alarme',
-                            icon: 'close-icon.png' // Ícone do botão de fechar
+                            icon: 'close-icon.png' 
                         }
                     ]
                 }).then((notification) => {
-                    // Salva a notificação ativa
+                   
                     notificacaoAtiva = notification;
 
-                    // Ouve o evento de fechamento da notificação
+                  
                     notification.onclose = function () {
-                        notificacaoAtiva = null; // Reseta o estado quando a notificação é fechada
-                        StopMusic(); // Para a música quando a notificação é fechada
+                        notificacaoAtiva = null; 
+                        StopMusic(); 
                     };
 
                     // Ouve o clique na notificação
                     notification.onclick = function (event) {
-                        event.preventDefault(); // Verifica se a guia atual está em segundo plano e tenta trazê-la para o foco
-                        window.focus(); // Traz a guia atual para o primeiro plano
+                        event.preventDefault(); 
+                        window.focus(); 
                     };
 
-                    // Toca a música ao exibir a notificação
+                    
                     Music(userMusic);
                 });
 
-                // Envia uma mensagem ao Service Worker para tocar o áudio
+               
                 registration.active.postMessage('playAudio');
             });
         } else {
@@ -144,30 +147,30 @@ function setupInputEvent() {
     const divaddMusic = document.querySelector('#addMusic');
     divaddMusic.innerHTML = '';
 
-    //criando paragrafo
+   
     const p = document.createElement('p');
     p.textContent = file.name.replace('.mp3', '')
     p.setAttribute('class', 'pMusic')
-    //criando icone
+ 
     const trashIcon = document.createElement('i');
     trashIcon.classList.add('bi', 'bi-trash3');
 
-    //criando div
+   
     const divMusic = document.createElement('div');
     divMusic.classList.add('divMusic');
-    //adicionando
+   
     divMusic.appendChild(p);
     divMusic.appendChild(trashIcon);
     divaddMusic.appendChild(divMusic);
 
     trashIcon.addEventListener('click', () => {
-      ///
+      
       userMusic = null;
       StopMusic()
       if (HaveHoursAlarms) {
         Music();
       }
-      ///
+      
       divaddMusic.innerHTML = '';
       //recriando label
       const label = document.createElement('label');
@@ -332,7 +335,7 @@ function UpdateClock() {
               if ('Notification' in window && navigator.serviceWorker) {
                 configurarAlarme(userMusic);
               } else {
-              alert('Notificações ou Service Workers não são suportados neste navegador.');
+              NewAlerts('Notificações ou Service Workers não são suportados neste navegador.');
              }
          }
         }
@@ -366,11 +369,9 @@ buttonAlarm.addEventListener("touchstart", handleAlarmAction); // Evento de toqu
 
 // Função que lida com a ação do alarme
 function handleAlarmAction(event) {
- 
+ StopMusic();
  if ('serviceWorker' in navigator && 'Notification' in window) {
   // O navegador suporta Service Worker e Notificações
-  StopMusic();
-  
   Notification.requestPermission()
     .then(function (result) {
       console.clear();
@@ -379,15 +380,15 @@ function handleAlarmAction(event) {
         console.log('Permissão de notificações concedida.');
       } else if (result === 'denied') {
         console.log('Permissão de notificações negada pelo usuário.');
-        alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+        NewAlerts("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
       } else {
         console.log('Permissão de notificações ignorada.');
-        alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+        NewAlerts("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
       }
     })
     .catch(function (error) {
       console.log('Erro ao solicitar permissão de notificações:', error);
-      alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+      NewAlerts("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
     });
 
   Notification.requestPermission().then(function(permission) {
@@ -500,14 +501,14 @@ const divIconsList = [...document.querySelectorAll('.div_Inputs')];
 divIconsList.forEach((divInput, inputIndex) => {
   const divIcons = divInput.querySelectorAll('.divIcons .arrow');
     divIcons.forEach((arrow, index) => { 
-        const startAction = () => {
-      
+      const startAction = (e) => {
+            e.preventDefault(); 
           const input = divInput.querySelector('input'); 
+        intervalId = setInterval(() => {
+          if (index === 0) {
             if (input.value == '') {
                 input.value = '00'
             }
-            intervalId = setInterval(() => {
-              if (index === 0) {
                 if (inputIndex === 0) {
                     if (parseInt(input.value) < 23) {
                         AddValue(input);
@@ -517,30 +518,24 @@ divIconsList.forEach((divInput, inputIndex) => {
                         AddValue(input);
                       }
                   }
-              if (input.value < 0) {
-                 input.value = ''
+              } else if (index === 1) {
+
+                RemoveValue(input);
                 }
-                } else if (index === 1) {
-                  RemoveValue(input);
-                  if (parseInt(input.value) < 0) {
-                      input.value = ''
-                    }
-                }
-              }, 50);
+              }, 60);
       }
       const stopAction = () => {
       clearInterval(intervalId);
-     };
-
-    arrow.addEventListener('mousedown', startAction);
-    arrow.addEventListener('touchstart', startAction);
-
-    arrow.addEventListener('mouseup', stopAction);
-    arrow.addEventListener('touchend', stopAction);
-
-    
-    arrow.addEventListener('mouseleave', stopAction);
-    arrow.addEventListener('touchmove', stopAction); 
+      };
+      if (isMobileOrTablet()) {
+        arrow.addEventListener('touchstart', startAction);
+        arrow.addEventListener('touchend', stopAction);
+        arrow.addEventListener('touchmove', stopAction); 
+      } else {
+        arrow.addEventListener('mousedown', startAction);
+        arrow.addEventListener('mouseup', stopAction);
+        arrow.addEventListener('mouseleave', stopAction);
+      }
  })
 })
 const AddValue = (input) => {
@@ -556,28 +551,19 @@ const RemoveValue=(input)=>{
 
 
 
-//Regras de permissões do Input
-document.querySelectorAll("#alarm input").forEach(input => {
-  // Bloqueia a entrada do teclado
-  input.addEventListener('keydown', event => {
-    const allowedKeys = ['ArrowUp', 'ArrowDown']
-    if (!allowedKeys.includes(event.key)) {
-      event.preventDefault();
-    }
-    
-  })
-
- //operations condition
-    input.addEventListener('input', () => {
-      if (Number(input.value) === -1) {
-        input.value = ''
-      }
+divIconsList.forEach((divInput) => {
+    const divZero = divInput.querySelectorAll('.ZerarDiv .bi-file-x');
+    divZero.forEach((icon) => {
+      icon.addEventListener('click', () => {
+        const input = divInput.querySelector('input'); 
+         if(input.value !== ''){
+           input.value = '00';
+           }
+      })
+      
     })
-  input.addEventListener('input', function () {
-    if (this.value && this.value < 10) {
-      this.value = this.value.padStart(2,'0')
-    }
+  
   })
 
-})
+
 
