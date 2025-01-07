@@ -31,7 +31,7 @@ O código é simples e direto, utilizando HTML, CSS e JavaScript:
 
 ## 📌 Link para acessar
 
-Você pode acessar o alarme diretamente neste link: [Alarme Simples](https://telmopersch123.github.io/alarme-Simples/)
+Você pode acessar o alarme diretamente neste link: [Alarme Simples](https://telmopersch123.github.io/Alarme-Simples/)
 
 ---
 
