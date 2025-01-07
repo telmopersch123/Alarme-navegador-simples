@@ -363,6 +363,7 @@ setInterval(UpdateClock, 1000);
 // Adicionando o evento de click e touchstart no botão
 buttonAlarm.addEventListener("click", handleAlarmAction);
 buttonAlarm.addEventListener("touchstart", handleAlarmAction); // Evento de toque
+buttonAlarm.addEventListener("touchend", handleAlarmAction); // Evento de toque
 
 // Função que lida com a ação do alarme
 function handleAlarmAction(event) {
