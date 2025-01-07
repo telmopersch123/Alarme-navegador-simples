@@ -368,8 +368,8 @@ buttonAlarm.addEventListener("touchstart", handleAlarmAction); // Evento de toqu
 // Função que lida com a ação do alarme
 function handleAlarmAction(event) {
   //event.preventDefault(); // Previne comportamento padrão de eventos, como scroll ou seleção de texto
-  alert('clicou')
-  StopMusic();
+ 
+ // StopMusic();
   Notification.requestPermission()
     .then(function (result) {
       console.clear();
