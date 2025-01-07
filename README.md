@@ -57,7 +57,8 @@ Aqui estão alguns desafios interessantes para quem quiser contribuir ou melhora
    
 2. **Vários alarmes com músicas diferentes**: O site atualmente só permite configurar uma música para o alarme. Que tal modificar o código para que o usuário possa escolher músicas diferentes para alarmes específicos e até configurar múltiplos alarmes com músicas distintas?
 
-3. **Alarmes para dias específicos da semana**: Atualmente, o alarme só toca no dia atual. Tente adicionar a funcionalidade para permitir que o usuário configure alarmes para dias específicos da semana (como "todos os segundas-feiras" ou "todo dia 15 de cada mês"). Isso exigirá alterações na lógica de verificação do dia e hora para garantir que o alarme seja disparado no dia correto.
+3. **Alarmes para dias específicos da semana**: Atualmente, o alarme só toca no dia atual. Tente adicionar a funcionalidade para permitir que o usuário configure alarmes para dias específicos da semana (como "todos os segundas-feiras" ou "todo dia 15 de cada mês"). **NO ENTANTO, PARA ISSO EXISTE UMA LIMITAÇÃO POR SE TRATAR DE UM PROJETO WEB**, pois o alarme depende de recursos do navegador e não pode garantir que a página esteja aberta ou em execução o tempo todo. Isso exigirá alterações na lógica de verificação do dia e hora para garantir que o alarme seja disparado no dia correto.
+
 
 Envie um **pull request** com suas modificações e melhorias!
 
