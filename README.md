@@ -32,7 +32,7 @@ Este projeto consiste em um alarme funcional que toca uma música ou som pré-de
 O código é simples e direto, utilizando HTML, CSS e JavaScript:
 
 - **index.html**: A página principal do alarme.
-- **alarme.js**: O script que controla a reprodução do alarme.
+- **script.js**: O script que controla a reprodução do alarme.
 - **musicaAlarme.mp3**: O som padrão do alarme.
 
 ---
