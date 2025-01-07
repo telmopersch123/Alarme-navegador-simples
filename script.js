@@ -370,40 +370,40 @@ function handleAlarmAction(event) {
   //event.preventDefault(); // Previne comportamento padrão de eventos, como scroll ou seleção de texto
  
  // StopMusic();
-  Notification.requestPermission()
-    .then(function (result) {
-      console.clear();
-      console.log('Permissão solicitada:', result);
-      if (result === 'granted') {
-        console.log('Permissão de notificações concedida.');
-      } else if (result === 'denied') {
-        console.log('Permissão de notificações negada pelo usuário.');
-        alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
-      } else {
-        console.log('Permissão de notificações ignorada.');
-        alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
-      }
-    })
-    .catch(function (error) {
-      console.log('Erro ao solicitar permissão de notificações:', error);
-      alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
-    });
+  // Notification.requestPermission()
+  //   .then(function (result) {
+  //     console.clear();
+  //     console.log('Permissão solicitada:', result);
+  //     if (result === 'granted') {
+  //       console.log('Permissão de notificações concedida.');
+  //     } else if (result === 'denied') {
+  //       console.log('Permissão de notificações negada pelo usuário.');
+  //       alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+  //     } else {
+  //       console.log('Permissão de notificações ignorada.');
+  //       alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     console.log('Erro ao solicitar permissão de notificações:', error);
+  //     alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+  //   });
 
-  Notification.requestPermission().then(function(permission) {
-    if (permission === 'granted') {
-        audioAlarme = new Audio();
-        audioAlarme.src = './musicaAlarme.mp3';
-        audioAlarme.play().then(() => {
-            StopMusic();
-            console.log('Áudio permitido pelo usuário.');
-        }).catch((error) => {
-            console.error('Erro ao reproduzir áudio:', error);
-        });
+  // Notification.requestPermission().then(function(permission) {
+  //   if (permission === 'granted') {
+  //       audioAlarme = new Audio();
+  //       audioAlarme.src = './musicaAlarme.mp3';
+  //       audioAlarme.play().then(() => {
+  //           StopMusic();
+  //           console.log('Áudio permitido pelo usuário.');
+  //       }).catch((error) => {
+  //           console.error('Erro ao reproduzir áudio:', error);
+  //       });
 
-    } else {
-        console.log('Permissão de notificações não concedida.');
-    }
-  });
+  //   } else {
+  //       console.log('Permissão de notificações não concedida.');
+  //   }
+  // });
 
   //validando entrada 
   if (currentTime.hour !== -1 && currentTime.minute !== -1 && currentTime.second !== -1) {
