@@ -9,7 +9,7 @@ self.addEventListener('notificationclick', function(event) {
             // Verifica se há alguma guia aberta
             for (let client of clientList) {
                 // Verifica se a guia já está aberta e se a URL corresponde
-                if (client.url.includes('/Alarme-Simples')) {
+               if (client.url === 'https://telmopersch123.github.io/Alarme-Simples/') {
                     return client.focus(); // Traz a guia de volta ao primeiro plano
                 }
             }
