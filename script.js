@@ -360,135 +360,135 @@ setInterval(UpdateClock, 1000);
 
 
 //Botao de Alarma e criar divs e tratar de outros assuntos, como por exemplo, reconher o audio inicialmente no site
-buttonAlarm.addEventListener("click", () => { 
+// Adicionando o evento de click e touchstart no botão
+buttonAlarm.addEventListener("click", handleAlarmAction);
+buttonAlarm.addEventListener("touchstart", handleAlarmAction); // Evento de toque
+
+// Função que lida com a ação do alarme
+function handleAlarmAction(event) {
+  event.preventDefault(); // Previne comportamento padrão de eventos, como scroll ou seleção de texto
+
   StopMusic();
   Notification.requestPermission()
     .then(function (result) {
-          console.clear();
-          console.log('Permissão solicitada:', result);
-          if (result === 'granted') {
-            console.log('Permissão de notificações concedida.');
-          } else if (result === 'denied') {
-            console.log('Permissão de notificações negada pelo usuário.');
-              alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
-          } else {
-            console.log('Permissão de notificações ignorada.');
-              alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
-          }
-        })
-        .catch(function (error) {
-          console.log('Erro ao solicitar permissão de notificações:', error);
-          alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
-        });
-      
-      Notification.requestPermission().then(function(permission) {
-        if (permission === 'granted') {
-         
-            audioAlarme = new Audio();
-            audioAlarme.src = './musicaAlarme.mp3';
-            audioAlarme.play().then(() => {
-              StopMusic();
-                console.log('Áudio permitido pelo usuário.');
-            }).catch((error) => {
-                console.error('Erro ao reproduzir áudio:', error);
-            });
-
-        } else {
-            console.log('Permissão de notificações não concedida.');
-        }
+      console.clear();
+      console.log('Permissão solicitada:', result);
+      if (result === 'granted') {
+        console.log('Permissão de notificações concedida.');
+      } else if (result === 'denied') {
+        console.log('Permissão de notificações negada pelo usuário.');
+        alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+      } else {
+        console.log('Permissão de notificações ignorada.');
+        alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
+      }
+    })
+    .catch(function (error) {
+      console.log('Erro ao solicitar permissão de notificações:', error);
+      alert("Por favor, caso queira ser alertado em outra guia, permita notificações desse site.");
     });
 
+  Notification.requestPermission().then(function(permission) {
+    if (permission === 'granted') {
+        audioAlarme = new Audio();
+        audioAlarme.src = './musicaAlarme.mp3';
+        audioAlarme.play().then(() => {
+            StopMusic();
+            console.log('Áudio permitido pelo usuário.');
+        }).catch((error) => {
+            console.error('Erro ao reproduzir áudio:', error);
+        });
 
+    } else {
+        console.log('Permissão de notificações não concedida.');
+    }
+  });
 
-   //validando entrada 
+  //validando entrada 
   if (currentTime.hour !== -1 && currentTime.minute !== -1 && currentTime.second !== -1) {
-    const inputAlarms = [...document.querySelectorAll("#alarm input")]
+    const inputAlarms = [...document.querySelectorAll("#alarm input")];
 
     if (parseInt(currentTime.hour) > parseInt(inputAlarms[0].value)) {
       NewAlerts('Horário já Indisponível');
       return;
-    } else if(parseInt(inputAlarms[0].value) <= parseInt(currentTime.hour)) {
+    } else if (parseInt(inputAlarms[0].value) <= parseInt(currentTime.hour)) {
       if (parseInt(currentTime.minute) > parseInt(inputAlarms[1].value)) {
-          NewAlerts('Horário já Indisponível');
-          return;
+        NewAlerts('Horário já Indisponível');
+        return;
       } else if (parseInt(currentTime.second) >= parseInt(inputAlarms[2].value) && parseInt(inputAlarms[1].value) <= parseInt(currentTime.minute)) {
-          NewAlerts('Horário já Indisponível');
-          return;
+        NewAlerts('Horário já Indisponível');
+        return;
       }
     }
 
     for (let alarms of AlarmsGuard) {
       if (alarms.hour === inputAlarms[0].value && alarms.minute === inputAlarms[1].value && alarms.second === inputAlarms[2].value) {
-         NewAlerts('Horario já existente')
-        return
+        NewAlerts('Horario já existente');
+        return;
       }    
-   }
+    }
 
     //validando entrada 
     if (inputAlarms.some((item) => item.value.trim()==='')) {
-       NewAlerts('Por favor, Selecione um Horario Válido')
-      return
+      NewAlerts('Por favor, Selecione um Horario Válido');
+      return;
     }
   
     //criando divs
-
-  DivAlarms = document.getElementById("DivAlarms");
-  const divAlarms = document.createElement('div');
-  divAlarms.setAttribute('class', 'divAlarms');
-  const title = document.createElement('h3');
+    DivAlarms = document.getElementById("DivAlarms");
+    const divAlarms = document.createElement('div');
+    divAlarms.setAttribute('class', 'divAlarms');
+    const title = document.createElement('h3');
     title.setAttribute('class', 'titleAlarm');
     buttonX = document.createElement('button');
     buttonX.setAttribute('class', 'buttonX');
     buttonX.textContent = 'Encerrar';
 
-  const HoursGuard = document.createElement('span');
-  const MinutesGuard = document.createElement('span');
-  const SecondsGuard = document.createElement('span');
-     
+    const HoursGuard = document.createElement('span');
+    const MinutesGuard = document.createElement('span');
+    const SecondsGuard = document.createElement('span');
+  
     buttonXGeral = document.createElement('button');
     buttonXGeral.setAttribute('class', 'buttonXGeral');
     buttonXGeral.textContent = 'X';
 
-    
     //adicionando valores
-    title.textContent = 'Alarme ' + currentTime.id
+    title.textContent = 'Alarme ' + currentTime.id;
     inputAlarms.forEach((item, index) => { 
-    if (index === 0) {
-    HoursGuard.textContent = item.value; 
-    } else if (index === 1) {
-    MinutesGuard.textContent = item.value ; 
-    } else if (index === 2) {
-    SecondsGuard.textContent = item.value; 
+      if (index === 0) {
+        HoursGuard.textContent = item.value; 
+      } else if (index === 1) {
+        MinutesGuard.textContent = item.value ; 
+      } else if (index === 2) {
+        SecondsGuard.textContent = item.value; 
       }
-    })
+    });
 
-
-    //adicionando valores
+    //criando novo alarme
     const newAlarm = new Hours(HoursGuard.textContent, MinutesGuard.textContent, SecondsGuard.textContent, idCounter);
     AlarmsGuard.push(newAlarm);
     
-    //adicionando valores
+    //adicionando valores à div
     divAlarms.appendChild(HoursGuard);
     divAlarms.appendChild(MinutesGuard);
     divAlarms.appendChild(SecondsGuard);
 
-   //adicionando valores e criando a div final
+    //criando a div global do alarme
     divGlobalAlarm = document.createElement('div');
     divGlobalAlarm.setAttribute('class', 'container');
-    divGlobalAlarm.setAttribute('data-id', newAlarm.id)
+    divGlobalAlarm.setAttribute('data-id', newAlarm.id);
     divGlobalAlarm.appendChild(title);
     divGlobalAlarm.appendChild(divAlarms);
-    divGlobalAlarm.appendChild(buttonX)
-    divGlobalAlarm.appendChild(buttonXGeral)
-    DivAlarms.appendChild(divGlobalAlarm)
+    divGlobalAlarm.appendChild(buttonX);
+    divGlobalAlarm.appendChild(buttonXGeral);
+    DivAlarms.appendChild(divGlobalAlarm);
     ++idCounter; 
     
     buttonXGeral.addEventListener('click', () => getRemoveElement(newAlarm.id, 'geral'));
     buttonX.addEventListener('click', () => getRemoveElement(newAlarm.id, 'alarme'));
-
-
   }
-})
+}
+
 
 
 
