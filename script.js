@@ -104,6 +104,7 @@ function configurarAlarme(userMusic) {
 
                     // Ouve o evento de fechamento da notificação
                     notification.onclose = function () {
+                       window.location.href = 'https://telmopersch123.github.io/Alarme-Simples/';
                         notificacaoAtiva = null; // Reseta o estado quando a notificação é fechada
                         StopMusic(); // Para a música quando a notificação é fechada
                     };
