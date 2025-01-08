@@ -1,6 +1,15 @@
 # ⏰ Alarme Simples com Reprodução Contínua 🎵
 
-Este é um projeto de **alarme simples**, desenvolvido em JavaScript, com a funcionalidade de tocar um som mesmo quando o navegador estiver minimizado ou em segundo plano. Ele é ideal para lembretes rápidos, timers ou qualquer situação em que você precise ser notificado com um som.
+Este é um projeto de **alarme simples**, desenvolvido em JavaScript, com a funcionalidade de tocar um som mesmo quando o navegador estiver minimizado ou em segundo plano.  
+
+Ele é ideal para:  
+- Lembretes rápidos;  
+- Timers;  
+- Qualquer situação em que você precise ser notificado com um som.  
+
+> **💡 Nota:**  
+> A ideia principal era criar um **timer de lembrete** de forma rápida e fácil.  
+> Por isso, o desenvolvimento do site foi concluído em apenas **6 dias**!
 
 ---
 > **⚠️ Observação**  
