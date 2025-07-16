@@ -6,11 +6,6 @@ Ele é ideal para:
 - Lembretes rápidos;  
 - Timers;  
 - Qualquer situação em que você precise ser notificado com um som.  
-
-> **💡 Nota:**  
-> A ideia principal era criar um **timer de lembrete** de forma rápida e fácil.  
-> Por isso, o desenvolvimento do site foi concluído em apenas **6 dias**!
-
 ---
 > **⚠️ Observação**  
 > Por se tratar de um projeto web, **em dispositivos mobiles**, o mecanismo de música fora da guia e a notificação nativa do navegador **podem não funcionar corretamente**.  
