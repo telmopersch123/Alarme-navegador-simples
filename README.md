@@ -3,9 +3,9 @@
 Este é um projeto de **alarme simples**, desenvolvido em JavaScript, com a funcionalidade de tocar um som mesmo quando o navegador estiver minimizado ou em segundo plano.  
 
 Ele é ideal para:  
-- Lembretes rápidos;  
-- Timers;  
-- Qualquer situação em que você precise ser notificado com um som.  
+- Lembretes rápidos;   
+- Qualquer situação em que você precise ser notificado com um som.
+  
 ---
 > **⚠️ Observação**  
 > Por se tratar de um projeto web, **em dispositivos mobiles**, o mecanismo de música fora da guia e a notificação nativa do navegador **podem não funcionar corretamente**.  
