@@ -75,8 +75,4 @@ Aqui estão alguns desafios interessantes para quem quiser contribuir ou melhora
 
 Envie um **pull request** com suas modificações e melhorias!
 
----
 
-## 🖊️ Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
