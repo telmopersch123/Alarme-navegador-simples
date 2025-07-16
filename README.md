@@ -58,7 +58,7 @@ Você pode acessar o alarme diretamente neste link: [Alarme Simples](https://tel
 
 - HTML5
 - CSS3
-- JavaScript (API Audio)
+- JavaScript
 
 ---
 
